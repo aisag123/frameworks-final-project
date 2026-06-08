@@ -4,13 +4,14 @@ import { AuthService } from '../services/auth-service';
 import { SubscriptionService } from './SubscriptionService';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { BaseChartDirective } from 'ng2-charts';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { ChartData, ChartOptions, ChartType } from 'chart.js';
 
 @Component({
   standalone: true,
   selector: 'app-subscription',
   imports: [CommonModule, RouterModule, BaseChartDirective],
+  providers: [provideCharts(withDefaultRegisterables())],
   template: `
 <section class="subscriptionPage">
 

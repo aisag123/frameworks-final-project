@@ -102,7 +102,7 @@ export class AuthService {
     // Logs out the current user from Firebase and sets the current user to null
     await signOut(auth);
     this.currentUser.set(null);
-    await this.router.navigateByUrl('/');
+    await this.router.navigateByUrl('/login');
   }
 
   // Updates a user's information in the database

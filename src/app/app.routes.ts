@@ -1,14 +1,4 @@
 import { CanActivateFn, Router, Routes } from '@angular/router';
-import { SignUpComponent } from './sign-up-component/sign-up-component';
-import { LoginComponent } from './login-component/login-component';
-import { Dashboard } from './pages/dashboard/dashboard';
-import { SubscriptionDash } from './Subscription/SubscriptionDash';
-import { SubscriptionForm } from './Subscription/SubscriptionForm';
-import { LoanDash } from './Loan/LoanDash';
-import { LoanForm } from './Loan/LoanForm';
-import { Budget } from './pages/budget/budget';
-import { TransactionList } from './transaction-list/transaction-list';
-import { SettingsComponent } from './settings-component/settings-component';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase.config';
 import { inject } from '@angular/core';
@@ -47,67 +37,73 @@ export const routes: Routes = [
   },
   {
     path: 'signup',
-    component: SignUpComponent,
+    loadComponent: () => import('./sign-up-component/sign-up-component').then((m) => m.SignUpComponent),
     title: 'Sign Up',
     canActivate: [guestGuard],
   },
   {
     path: 'login',
-    component: LoginComponent,
+    loadComponent: () => import('./login-component/login-component').then((m) => m.LoginComponent),
     title: 'Login',
     canActivate: [guestGuard],
   },
   {
     path: 'dashboard',
-    component: Dashboard,
+    loadComponent: () => import('./pages/dashboard/dashboard').then((m) => m.Dashboard),
     title: 'Dashboard',
+    canActivate: [authGuard],
   },
   {
     path: 'subscription',
-    component: SubscriptionDash,
-    title: 'Subscription'
+    loadComponent: () => import('./Subscription/SubscriptionDash').then((m) => m.SubscriptionDash),
+    title: 'Subscription',
+    canActivate: [authGuard],
   },
     {
     path: 'subscription/add',
-    component: SubscriptionForm,
-    title: 'Add Subscription'
+    loadComponent: () => import('./Subscription/SubscriptionForm').then((m) => m.SubscriptionForm),
+    title: 'Add Subscription',
+    canActivate: [authGuard],
   },
     {
     path: 'subscription/:id/edit',
-    component: SubscriptionForm,
-    title: 'Edit Subscription'
+    loadComponent: () => import('./Subscription/SubscriptionForm').then((m) => m.SubscriptionForm),
+    title: 'Edit Subscription',
+    canActivate: [authGuard],
   },
     {
     path: 'loan',
-    component: LoanDash,
-    title: 'Loan'
+    loadComponent: () => import('./Loan/LoanDash').then((m) => m.LoanDash),
+    title: 'Loan',
+    canActivate: [authGuard],
   },
     {
     path: 'loan/add',
-    component: LoanForm,
+    loadComponent: () => import('./Loan/LoanForm').then((m) => m.LoanForm),
     title: 'Add Loan',
+    canActivate: [authGuard],
   },
   {
     path: 'loan/:id/edit',
-    component: LoanForm,
+    loadComponent: () => import('./Loan/LoanForm').then((m) => m.LoanForm),
     title: 'Edit Loan',
     canActivate: [authGuard],
   },
   {
     path: 'budgets',
-    component: Budget,
+    loadComponent: () => import('./pages/budget/budget').then((m) => m.Budget),
     title: 'Budgets',
     canActivate: [authGuard],
   },
   {
     path: 'transactions',
-    component: TransactionList,
+    loadComponent: () => import('./transaction-list/transaction-list').then((m) => m.TransactionList),
     title: 'Transactions',
     canActivate: [authGuard],
   },
   {
     path: 'settings',
-    component: SettingsComponent,
+    loadComponent: () => import('./settings-component/settings-component').then((m) => m.SettingsComponent),
     title: 'Settings',
     canActivate: [authGuard],
   },

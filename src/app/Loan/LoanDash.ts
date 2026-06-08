@@ -4,7 +4,7 @@ import { AuthService } from '../services/auth-service';
 import { LoanService } from './LoanService';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { BaseChartDirective } from 'ng2-charts';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { ChartData, ChartType, ChartOptions } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   selector: 'app-Loan',
   imports: [CommonModule, RouterModule, BaseChartDirective, FormsModule],
+  providers: [provideCharts(withDefaultRegisterables())],
   template: `
     <section class="subscriptionPage">
       <div class="subscription-header">

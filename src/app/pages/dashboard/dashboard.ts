@@ -4,7 +4,7 @@ import { BudgetService } from '../../services/budget.service';
 import { BudgetSnapshot } from '../../budget-snapshot/budget-snapshot';
 import { TransactionService } from '../../services/transaction-service';
 import { TransactionSnapshot } from '../../transaction-snapshot/transaction-snapshot';
-import { BaseChartDirective } from 'ng2-charts';
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { SubscriptionService } from '../../Subscription/SubscriptionService';
 import { ChartData, ChartOptions } from 'chart.js';
 
@@ -17,6 +17,7 @@ import { ChartData, ChartOptions } from 'chart.js';
     TransactionSnapshot,
     BaseChartDirective
   ],
+  providers: [provideCharts(withDefaultRegisterables())],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
